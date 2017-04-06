@@ -9,6 +9,7 @@ import moment from 'moment/min/moment-with-locales.min';
 
 export default class Time extends React.Component {
   render() {
+    if (this.props.position === 'center') return null;
     return (
       <View style={[styles[this.props.position].container, this.props.containerStyle[this.props.position]]}>
         <Text style={[styles[this.props.position].text, this.props.textStyle[this.props.position]]}>
@@ -66,14 +67,16 @@ Time.defaultProps = {
 };
 
 Time.propTypes = {
-  position: React.PropTypes.oneOf(['left', 'right']),
+  position: React.PropTypes.oneOf(['left', 'right', 'center']),
   currentMessage: React.PropTypes.object,
   containerStyle: React.PropTypes.shape({
     left: View.propTypes.style,
+    center: View.propTypes.style,
     right: View.propTypes.style,
   }),
   textStyle: React.PropTypes.shape({
     left: Text.propTypes.style,
+    center: View.propTypes.style,    
     right: Text.propTypes.style,
   }),
 };
